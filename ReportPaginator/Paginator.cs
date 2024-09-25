@@ -34,6 +34,7 @@ namespace Sherman.WpfReporting.Lib
             while (processing)
             {
                 var newPage = pageFactory();
+                await Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Render, new Action(() => newPage.UpdateLayout()));
                 var pageLogicalChildren = FindLogicalChildren(newPage).ToList();
 
                 pageNumber++;
